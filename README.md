@@ -45,11 +45,11 @@ def market(start_value, change=0.1, num_steps=1, lower_barrier=0, upper_barrier=
         #                       STOP iff current touch one of barriers
 
         if current <= lower_barrier or current >= upper_barrier:
-            print(f"Блуждание остановлено на шаге {steps_taken}: значение {current} (барьер {'нижний' if current <= lower_barrier else 'верхний'})")
+            print(f"R.W. stopped at a step {steps_taken}: value {current} (barrier {'lower' if current <= lower_barrier else 'upper'})")
             break
 
     else:
-        print(f"Достигнуто максимум {num_steps} шагов без барьера (редко с p=0.5)")
+        print(f"maximum reached {num_steps} steps qtty (rarely с p=0.5)")
 
     return values
 
