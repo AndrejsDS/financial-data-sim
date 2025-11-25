@@ -31,18 +31,18 @@ def market(start_value, change=0.1, num_steps=1, lower_barrier=0, upper_barrier=
 
     steps_taken = 0
     for _ in range(num_steps):
-        #                       generate random value with range from {0.1} to {10}
+         #                       generate random value with range from {0.1} to {10}
 
         step_size = random.uniform(0.1, 10)
 
-        #                       with 50/50 prblty +step_size or -step_size
+         #                       with 50/50 prblty +step_size or -step_size
 
         step = random.choice([step_size, -step_size])
         current += step
         values.append(current)
         steps_taken += 1
 
-        #                       STOP iff current touch one of barriers
+         #                       STOP iff current touch one of barriers
 
         if current <= lower_barrier or current >= upper_barrier:
             print(f"R.W. stopped at a step {steps_taken}: value {current} (barrier {'lower' if current <= lower_barrier else 'upper'})")
@@ -59,7 +59,7 @@ class MarketSimulatorApp:
         self.root.title("Market simulation: random walk")
         self.root.geometry("800x600")
 
-        # buttom for start
+         # buttom for start
         self.simulate_button = ctk.CTkButton(
             self.root,
             text="Start simulation",
@@ -69,18 +69,18 @@ class MarketSimulatorApp:
         )
         self.simulate_button.pack(pady=20)
 
-        # matplotlib fraim (dinamic)
+         # matplotlib fraim (dinamic)
         self.plot_frame = ctk.CTkFrame(self.root)
         self.plot_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-        # Default parms
+         # Default parms
         self.start_value = 500
         self.num_steps = 1000000
         self.lower_barrier = 0
         self.upper_barrier = 1000
 
     def run_simulation(self):
-        # sim start
+         # sim start
         result = market(
             self.start_value,
             0.1,
@@ -89,11 +89,11 @@ class MarketSimulatorApp:
             self.upper_barrier
         )
 
-        # cleaning priviose graph
+         # cleaning priviose graph
         for widget in self.plot_frame.winfo_children():
             widget.destroy()
 
-        # creatin a matplotlib figure
+         # creatin a matplotlib figure
         fig = Figure(figsize=(8, 5), dpi=100)
         ax = fig.add_subplot(111)
         ax.plot(result, linewidth=1, color='cyan')
@@ -105,15 +105,15 @@ class MarketSimulatorApp:
         ax.axhline(y=self.upper_barrier, color='green', linestyle='--', label=f'upper barrier ({self.upper_barrier})')
         ax.legend()
 
-        # integration with tkinter/customtkinter
+         # integration with tkinter/customtkinter
         canvas = FigureCanvasTkAgg(fig, master=self.plot_frame)
         canvas.draw()
 
-        # adding the interactive toolbar for zoom, pan and ...
+         # adding the interactive toolbar for zoom, pan and ...
         toolbar = NavigationToolbar2Tk(canvas, self.plot_frame)
         toolbar.update()
 
-        # canvas and toolbar
+         # canvas and toolbar
         canvas.get_tk_widget().pack(fill="both", expand=True)
         toolbar.pack(side="top", fill="x")
 
