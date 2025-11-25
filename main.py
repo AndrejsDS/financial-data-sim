@@ -1,5 +1,5 @@
 
- import random
+import random
 import customtkinter as ctk
 from collections import Counter  # For volume counting (not used yet)
 import matplotlib.pyplot as plt
@@ -125,3 +125,4 @@ class MarketSimulatorApp:
 if __name__ == "__main__":
     app = MarketSimulatorApp()
     app.run()
+
